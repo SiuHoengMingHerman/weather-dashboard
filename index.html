@@ -10,7 +10,8 @@
         <h1>Weather Dashboard</h1>
 
         <div class="search-box">
-            <input type="text" id="cityInput" placeholder="Enter city name">
+            <input type="text" id="cityInput" placeholder="Enter city name" autocomplete="off">
+            <div id="autocomplete-list" class="autocomplete-items"></div>
             <button onclick="getWeather()">Search</button>
         </div>
 

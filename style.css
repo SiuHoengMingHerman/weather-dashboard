@@ -33,3 +33,20 @@ button {
     margin-top: 20px;
     font-size: 18px;
 }
+
+
+.autocomplete-items {
+    position: absolute;
+    background: white;
+    /* border: 1px solid #ccc; */
+    border-top: none;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 200px;
+    z-index: 99;
+}
+
+.autocomplete-item {
+    padding: 10px;
+    cursor: pointer;
+}

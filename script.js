@@ -1,21 +1,20 @@
 const apiKey = "4dbeba226f2a0db02deb3ccc19887b55";
+const input = document.getElementById("cityInput");
+const list = document.getElementById("autocomplete-list");
+
+let selectedCity = null;
 
 function getWeather() {
-    const city = document.getElementById("cityInput").value;
-    if (city === "") {
-        alert("Please enter a city");
+    if (!selectedCity) {
+        alert("Please select a city from the list");
         return;
     }
 
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`)
-        .then(response => response.json())
-        .then(data => {
-            displayWeather(data);
-        })
-        .catch(error => {
-            alert("Error: " + error);
-        });
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${selectedCity.lat}&lon=${selectedCity.lon}&appid=${apiKey}&units=metric`)
+        .then(res => res.json())
+        .then(data => displayWeather(data));
 }
+
 
 function displayWeather(data) {
     // Check if city is invalid
@@ -36,3 +35,47 @@ function displayWeather(data) {
 
     document.getElementById("weatherResult").innerHTML = weatherHTML;
 }
+
+
+input.addEventListener("input", function () {
+    const value = this.value.trim();
+
+    list.innerHTML = "";
+    if (value.length < 2) return; // wait for 2 chars
+
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${value}&limit=5&appid=${apiKey}`)
+        .then(res => res.json())
+        .then(data => {
+            list.innerHTML = "";
+
+            data.forEach(city => {
+                const item = document.createElement("div");
+                item.classList.add("autocomplete-item");
+
+                let cityLabel = `${city.name}`;
+                if (city.state) cityLabel += `, ${city.state}`;
+                cityLabel += ` (${city.country})`;
+
+                item.textContent = cityLabel;
+
+                item.onclick = () => {
+                    input.value = cityLabel;
+                    selectedCity = {
+                        name: city.name,
+                        lat: city.lat,
+                        lon: city.lon
+                    };
+                    list.innerHTML = "";
+                };
+
+                list.appendChild(item);
+            });
+        });
+});
+
+
+document.addEventListener("click", function(e) {
+    if (e.target !== input) {
+        list.innerHTML = "";
+    }
+});
