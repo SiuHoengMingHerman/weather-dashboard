@@ -2,7 +2,7 @@
 
 A simple and clean Weather Dashboard web application that displays real‑time weather information for any city using the OpenWeather API.
 
-This project was built using **HTML**, **CSS**, and **JavaScript*.
+This project was built using **HTML**, **CSS**, and **JavaScript**.
 ---
 
 ## Live Demo
