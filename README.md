@@ -6,9 +6,9 @@ This project was built using **HTML**, **CSS**, and **JavaScript**.
 ---
 
 ## Live Demo
-<!-- 🔗 **[View on GitHub Pages](https://YOUR_USERNAME.github.io/weather-dashboard/)**   -->
-Developing...
+🔗 **[View on GitHub Pages](https://siuhoengmingherman.github.io/weather-dashboard/)**  
 
+Feel free to check it out!
 ---
 
 ## Features
