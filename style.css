@@ -54,3 +54,9 @@ button {
 .autocomplete-active {
     background: #e0e0e0;
 }
+
+
+#autocomplete-list {
+    max-height: 200px;
+    overflow-y: auto;
+}

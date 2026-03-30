@@ -44,6 +44,13 @@ function addActive(items) {
     if (currentFocus < 0) currentFocus = items.length - 1;
 
     items[currentFocus].classList.add("autocomplete-active");
+
+        
+    items[currentFocus].scrollIntoView({
+            block: "nearest",
+            behavior: "smooth"
+    });
+
 }
 
 function removeActive(items) {
@@ -83,6 +90,16 @@ input.addEventListener("input", function () {
                     };
                     list.innerHTML = "";
                 };
+                
+                
+                item.addEventListener("mouseenter", () => {
+                    const items = list.getElementsByClassName("autocomplete-item");
+                    for (let itm of items) {
+                        itm.classList.remove("autocomplete-active");
+                    }
+                    item.classList.add("autocomplete-active");
+                    currentFocus = Array.from(items).indexOf(item);
+                });
 
                 list.appendChild(item);
             });
