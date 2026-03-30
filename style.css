@@ -50,3 +50,7 @@ button {
     padding: 10px;
     cursor: pointer;
 }
+
+.autocomplete-active {
+    background: #e0e0e0;
+}
